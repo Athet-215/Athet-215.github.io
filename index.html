@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thet Mon Myint | Portfolio</title>
+<meta name="description" content="Portfolio of Thet Mon Myint: Odoo skills and the Student Management System project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f4f8;
+    --surface: #ffffff;
+    --ink: #1a1523;
+    --muted: #5a5466;
+    --accent: #6a3e6b;
+    --accent-ink: #ffffff;
+    --line: #d9d5e0;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17131c;
+      --surface: #211b28;
+      --ink: #f0edf4;
+      --muted: #a79fb2;
+      --accent: #d9a6d6;
+      --accent-ink: #17131c;
+      --line: #3a3144;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  a { color: inherit; }
+  a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap {
+    width: min(100% - 2.5rem, 62rem);
+    margin-inline: auto;
+  }
+
+  /* Breadcrumb bar: reads like a record's path in a business app */
+  .path {
+    border-bottom: 1px solid var(--line);
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .path .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.9rem;
+  }
+  .path ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .path li + li::before { content: "/"; margin-right: 0.5rem; color: var(--line); }
+  .path [aria-current] { color: var(--ink); }
+  .path nav { display: flex; gap: 1.25rem; }
+  .path nav a { text-decoration: none; }
+  .path nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Hero */
+  .hero { padding-block: clamp(3.5rem, 11vw, 8rem) clamp(3rem, 8vw, 6rem); }
+  h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(3.2rem, 12vw, 8.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .hero p {
+    margin: 2rem 0 0;
+    max-width: 34rem;
+    font-size: 1.3rem;
+    color: var(--muted);
+  }
+
+  /* Sections */
+  section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
+  h2 {
+    margin: 0 0 1.75rem;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Skills */
+  .skill {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .skill-mark {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 1.1rem;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 2.2rem;
+  }
+  .skill-name {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+  .skill-note { margin: 0; color: var(--muted); }
+
+  /* Project: laid out as a record, one field per row */
+  .record {
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+  }
+  .record > div {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+  }
+  .record > div + div { border-top: 1px solid var(--line); }
+  .record dt {
+    font-family: var(--display);
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .record dd { margin: 0; }
+  .record .title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+  .record a { color: var(--accent); text-underline-offset: 4px; }
+  .record a:hover { text-decoration-thickness: 2px; }
+
+  /* Contact */
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    border-radius: 0.4rem;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--display);
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .btn:hover { filter: brightness(1.1); }
+
+  footer {
+    padding-block: 2.5rem 3rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 36rem) {
+    .path nav { display: none; }
+    .record > div { grid-template-columns: 1fr; gap: 0.2rem; padding: 1rem 1.1rem; }
+    .skill-mark { width: 3.75rem; height: 3.75rem; font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="path">
+  <div class="wrap">
+    <ol>
+      <li>Portfolio</li>
+      <li aria-current="page">Thet Mon Myint</li>
+    </ol>
+    <nav aria-label="Page sections">
+      <a href="#skills">Skills</a>
+      <a href="#project">Project</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1>Thet Mon Myint</h1>
+      <p>Odoo skills and Python projects. This page shows what I work with and what I have built.</p>
+    </div>
+  </div>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <div class="skill">
+        <div class="skill-mark" aria-hidden="true">O</div>
+        <div>
+          <p class="skill-name">Odoo</p>
+          <p class="skill-note">Business software for managing company operations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="project">
+    <div class="wrap">
+      <h2>Project</h2>
+      <dl class="record">
+        <div>
+          <dt>Name</dt>
+          <dd class="title">Student Management System</dd>
+        </div>
+        <div>
+          <dt>What it does</dt>
+          <dd>Manages student records in one place.</dd>
+        </div>
+        <div>
+          <dt>Built with</dt>
+          <dd>Python</dd>
+        </div>
+        <div>
+          <dt>Source code</dt>
+          <dd><a href="https://github.com/Athet-215/Student-Management-System">github.com/Athet-215/Student-Management-System</a></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p style="margin-top:0;max-width:34rem;color:var(--muted)">See my code and other work on GitHub.</p>
+      <!-- To add your email, put a line like this below:
+           <p>Email: <a href="mailto:you@example.com">you@example.com</a></p> -->
+      <a class="btn" href="https://github.com/Athet-215">Visit my GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Thet Mon Myint</div>
+</footer>
+
+</body>
+</html>

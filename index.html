@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f4f8;
+    --bg: #ffffff;
     --surface: #ffffff;
     --ink: #1a1523;
     --muted: #5a5466;
@@ -20,18 +20,6 @@
     --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
     --body: "Source Serif 4", Georgia, "Times New Roman", serif;
   }
-  @media (prefers-color-scheme: white) {
-    :root {
-      --bg: #17131c;
-      --surface: #211b28;
-      --ink: #f0edf4;
-      --muted: #a79fb2;
-      --accent: #d9a6d6;
-      --accent-ink: #17131c;
-      --line: #3a3144;
-    }
-  }
-
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -86,12 +74,39 @@
   .path nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 
   /* Hero */
-  .hero { padding-block: clamp(3.5rem, 11vw, 8rem) clamp(3rem, 8vw, 6rem); }
+  .hero { padding-block: clamp(3rem, 9vw, 6.5rem) clamp(3rem, 8vw, 6rem); }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 4rem);
+  }
+  .portrait {
+    position: relative;
+    width: clamp(9rem, 20vw, 14rem);
+    aspect-ratio: 1;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: grid;
+    place-items: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+  .portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   h1 {
     margin: 0;
     font-family: var(--display);
     font-weight: 800;
-    font-size: clamp(3.2rem, 12vw, 8.5rem);
+    font-size: clamp(3rem, 9.5vw, 7rem);
     line-height: 0.95;
     letter-spacing: -0.035em;
   }
@@ -192,6 +207,8 @@
 
   @media (max-width: 36rem) {
     .path nav { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .portrait { order: -1; }
     .record > div { grid-template-columns: 1fr; gap: 0.2rem; padding: 1rem 1.1rem; }
     .skill-mark { width: 3.75rem; height: 3.75rem; font-size: 1.8rem; }
   }
@@ -216,8 +233,16 @@
 <main>
   <div class="hero">
     <div class="wrap">
-      <h1>Thet Mon Myint</h1>
-      <p>Odoo skills and Python projects. This page shows what I work with and what I have built.</p>
+      <div>
+        <h1>Thet Mon Myint</h1>
+        <p>Odoo skills and Python projects. This page shows what I work with and what I have built.</p>
+      </div>
+      <!-- Your photo: upload a file named photo.jpg next to index.html.
+           Until then, the initials show instead. -->
+      <div class="portrait">
+        TM
+        <img src="photo.jpg" alt="Photo of Thet Mon Myint" onerror="this.remove()">
+      </div>
     </div>
   </div>
 
